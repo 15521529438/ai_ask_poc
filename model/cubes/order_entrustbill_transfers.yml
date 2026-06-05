@@ -1,0 +1,118 @@
+cubes:
+  - name: order_entrustbill_transfers
+    sql: |
+      SELECT id, pkid, transfer_apply_code, payment_code, entrust_code,
+             type, cus_code, cus_name, sup_code, sup_name,
+             currency_code, currency, transfer_out_amount, transfer_in_amount,
+             org_id, up_id, up_entry_id, create_time, create_user,
+             update_time, update_user
+      FROM supply_chain_wy.order_entrustbill_t8
+      UNION ALL
+      SELECT id, pkid, transfer_apply_code, payment_code, entrust_code,
+             type, cus_code, cus_name, sup_code, sup_name,
+             currency_code, currency, transfer_out_amount, transfer_in_amount,
+             org_id, up_id, up_entry_id, create_time, create_user,
+             update_time, update_user
+      FROM supply_chain_wy.order_entrustbill_t9
+    public: false
+
+    joins:
+      - name: order_entrustbill
+        sql: "{order_entrustbill}.id = {CUBE}.id"
+        relationship: many_to_one
+
+    dimensions:
+      - name: pkid
+        sql: "{CUBE}.pkid"
+        type: number
+        primary_key: true
+
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        title: Order ID
+
+      - name: transfer_apply_code
+        sql: "{CUBE}.transfer_apply_code"
+        type: string
+        title: Transfer Apply Code
+
+      - name: payment_code
+        sql: "{CUBE}.payment_code"
+        type: string
+        title: Payment Code
+
+      - name: entrust_code
+        sql: "{CUBE}.entrust_code"
+        type: string
+        title: Entrust Code
+
+      - name: type
+        sql: "{CUBE}.type"
+        type: number
+        title: Transfer Type
+
+      - name: cus_code
+        sql: "{CUBE}.cus_code"
+        type: string
+        title: Customer Code
+
+      - name: cus_name
+        sql: "{CUBE}.cus_name"
+        type: string
+        title: Customer Name
+
+      - name: sup_code
+        sql: "{CUBE}.sup_code"
+        type: string
+        title: Supplier Code
+
+      - name: sup_name
+        sql: "{CUBE}.sup_name"
+        type: string
+        title: Supplier Name
+
+      - name: currency_code
+        sql: "{CUBE}.currency_code"
+        type: string
+        title: Currency Code
+
+      - name: currency
+        sql: "{CUBE}.currency"
+        type: string
+        title: Currency
+
+      - name: create_time
+        sql: "{CUBE}.create_time"
+        type: time
+        title: Create Time
+
+    measures:
+      - name: count
+        type: count
+        title: Total Transfer Records
+
+      - name: total_transfer_out_amount
+        sql: "{CUBE}.transfer_out_amount"
+        type: sum
+        title: Total Transfer Out Amount
+
+      - name: total_transfer_in_amount
+        sql: "{CUBE}.transfer_in_amount"
+        type: sum
+        title: Total Transfer In Amount
+
+      - name: net_transfer_amount
+        sql: "{CUBE}.transfer_in_amount - {CUBE}.transfer_out_amount"
+        type: sum
+        title: Net Transfer Amount
+
+      - name: distinct_customers
+        sql: "{CUBE}.cus_code"
+        type: count_distinct
+        title: Distinct Customers
+
+      - name: distinct_suppliers
+        sql: "{CUBE}.sup_code"
+        type: count_distinct
+        title: Distinct Suppliers

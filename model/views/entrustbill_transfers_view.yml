@@ -1,0 +1,38 @@
+views:
+  - name: entrustbill_transfers_view
+    description: >
+      Financial transfer records for entrustment bills. Tracks payment
+      transfers in/out including payment codes, customer/supplier info,
+      and currency details.
+
+    cubes:
+      - join_path: order_entrustbill_transfers
+        includes:
+          - pkid
+          - transfer_apply_code
+          - payment_code
+          - entrust_code
+          - type
+          - cus_code
+          - cus_name
+          - sup_code
+          - sup_name
+          - currency_code
+          - currency
+          - create_time
+          - count
+          - total_transfer_out_amount
+          - total_transfer_in_amount
+          - net_transfer_amount
+          - distinct_customers
+          - distinct_suppliers
+
+      - join_path: order_entrustbill_transfers.order_entrustbill
+        prefix: true
+        includes:
+          - code
+          - order_date
+          - status_label
+          - bus_type_name
+          - bus_model_name
+          - operating_unit

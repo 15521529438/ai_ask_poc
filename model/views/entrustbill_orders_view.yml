@@ -1,0 +1,62 @@
+views:
+  - name: entrustbill_orders_view
+    description: >
+      Entrustment bill orders - the main header records for supply chain
+      customs agency/import orders. Includes order status, customer/supplier
+      info, financial amounts, and key dates.
+
+    cubes:
+      - join_path: order_entrustbill
+        includes:
+          - id
+          - code
+          - entrust_code
+          - order_date
+          - create_time
+          - update_time
+          - status
+          - status_label
+          - cus_code
+          - cus_name
+          - cus_simples
+          - sup_code
+          - sup_name
+          - bus_type_code
+          - bus_type_name
+          - bus_model_code
+          - bus_model_name
+          - declare_type
+          - declare_type_code
+          - order_value_currency
+          - order_value_currency_code
+          - main_clerk
+          - operating_unit
+          - declaration_unit
+          - transact_name
+          - port
+          - port_code
+          - province
+          - city
+          - schedule_status
+          - customs_declaration_status
+          - accepted_status
+          - pay_type
+          - service_rate
+          - ismiddle
+          - is3c
+          - emergency_level
+          - count
+          - total_order_value
+          - avg_order_value
+          - total_ra_service_charge
+          - total_ra_vat
+          - total_ra_tariff
+          - total_already_pay
+          - total_freeze_amount
+          - total_collection_amount
+          - total_invoice_amount
+          - completed_count
+          - pending_count
+          - cancelled_count
+          - distinct_customers
+          - distinct_suppliers

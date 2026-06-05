@@ -1,0 +1,284 @@
+cubes:
+  - name: order_entrustbill
+    sql_table: supply_chain_wy.order_entrustbill
+    public: false
+
+    dimensions:
+      - name: id
+        sql: id
+        type: number
+        primary_key: true
+
+      - name: code
+        sql: "{CUBE}.code"
+        type: string
+        title: Order Code
+
+      - name: entrust_code
+        sql: "{CUBE}.entrust_code"
+        type: string
+        title: Entrust Code
+
+      - name: order_date
+        sql: "{CUBE}.order_date"
+        type: time
+        title: Order Date
+
+      - name: create_time
+        sql: "{CUBE}.create_time"
+        type: time
+        title: Create Time
+
+      - name: update_time
+        sql: "{CUBE}.update_time"
+        type: time
+        title: Update Time
+
+      - name: status
+        sql: "{CUBE}.status"
+        type: number
+        title: Status (Raw)
+
+      - name: status_label
+        sql: |
+          CASE {CUBE}.status
+            WHEN 0 THEN 'Draft'
+            WHEN 1 THEN 'Pending'
+            WHEN 2 THEN 'Approved'
+            WHEN 3 THEN 'Completed'
+            WHEN 4 THEN 'Cancelled'
+            ELSE 'Unknown'
+          END
+        type: string
+        title: Status
+
+      - name: enable
+        sql: "{CUBE}.enable"
+        type: number
+        title: Enable Flag
+
+      - name: cus_code
+        sql: "{CUBE}.cus_code"
+        type: string
+        title: Customer Code
+
+      - name: cus_name
+        sql: "{CUBE}.cus_name"
+        type: string
+        title: Customer Name
+
+      - name: cus_simples
+        sql: "{CUBE}.cus_simples"
+        type: string
+        title: Customer Short Name
+
+      - name: sup_code
+        sql: "{CUBE}.sup_code"
+        type: string
+        title: Supplier Code
+
+      - name: sup_name
+        sql: "{CUBE}.sup_name"
+        type: string
+        title: Supplier Name
+
+      - name: bus_type_code
+        sql: "{CUBE}.bus_type_code"
+        type: string
+        title: Business Type Code
+
+      - name: bus_type_name
+        sql: "{CUBE}.bus_type_name"
+        type: string
+        title: Business Type
+
+      - name: bus_model_code
+        sql: "{CUBE}.bus_model_code"
+        type: string
+        title: Business Model Code
+
+      - name: bus_model_name
+        sql: "{CUBE}.bus_model_name"
+        type: string
+        title: Business Model
+
+      - name: declare_type
+        sql: "{CUBE}.declare_type"
+        type: string
+        title: Declaration Type
+
+      - name: declare_type_code
+        sql: "{CUBE}.declare_type_code"
+        type: string
+        title: Declaration Type Code
+
+      - name: order_value_currency
+        sql: "{CUBE}.order_value_currency"
+        type: string
+        title: Order Value Currency
+
+      - name: order_value_currency_code
+        sql: "{CUBE}.order_value_currency_code"
+        type: string
+        title: Order Value Currency Code
+
+      - name: main_clerk
+        sql: "{CUBE}.main_clerk"
+        type: string
+        title: Main Clerk
+
+      - name: operating_unit
+        sql: "{CUBE}.operating_unit"
+        type: string
+        title: Operating Unit
+
+      - name: declaration_unit
+        sql: "{CUBE}.declaration_unit"
+        type: string
+        title: Declaration Unit
+
+      - name: transact_name
+        sql: "{CUBE}.transact_name"
+        type: string
+        title: Transaction Term
+
+      - name: port
+        sql: "{CUBE}.port"
+        type: string
+        title: Port
+
+      - name: port_code
+        sql: "{CUBE}.port_code"
+        type: string
+        title: Port Code
+
+      - name: province
+        sql: "{CUBE}.province"
+        type: string
+        title: Province
+
+      - name: city
+        sql: "{CUBE}.city"
+        type: string
+        title: City
+
+      - name: schedule_status
+        sql: "{CUBE}.schedule_status"
+        type: string
+        title: Schedule Status
+
+      - name: customs_declaration_status
+        sql: "{CUBE}.customs_declaration_status"
+        type: number
+        title: Customs Declaration Status
+
+      - name: accepted_status
+        sql: "{CUBE}.accepted_status"
+        type: number
+        title: Accepted Status
+
+      - name: pay_type
+        sql: "{CUBE}.pay_type"
+        type: number
+        title: Pay Type
+
+      - name: service_rate
+        sql: "{CUBE}.service_rate"
+        type: number
+        title: Service Rate
+
+      - name: ismiddle
+        sql: "{CUBE}.ismiddle"
+        type: string
+        title: Is Middle
+
+      - name: is3c
+        sql: "{CUBE}.is3c"
+        type: string
+        title: Is 3C Product
+
+      - name: emergency_level
+        sql: "{CUBE}.emergency_level"
+        type: number
+        title: Emergency Level
+
+    measures:
+      - name: count
+        type: count
+        title: Total Orders
+
+      - name: total_order_value
+        sql: "{CUBE}.order_value"
+        type: sum
+        title: Total Order Value
+
+      - name: avg_order_value
+        sql: "{CUBE}.order_value"
+        type: avg
+        title: Average Order Value
+
+      - name: total_ra_service_charge
+        sql: "{CUBE}.ra_service_charge"
+        type: sum
+        title: Total Service Charge
+
+      - name: total_ra_vat
+        sql: "{CUBE}.ra_vat"
+        type: sum
+        title: Total VAT
+
+      - name: total_ra_tariff
+        sql: "{CUBE}.ra_tariff"
+        type: sum
+        title: Total Tariff
+
+      - name: total_already_pay
+        sql: "{CUBE}.already_pay"
+        type: sum
+        title: Total Amount Paid
+
+      - name: total_freeze_amount
+        sql: "{CUBE}.freeze_amount"
+        type: sum
+        title: Total Freeze Amount
+
+      - name: total_collection_amount
+        sql: "{CUBE}.collection_amount"
+        type: sum
+        title: Total Collection Amount
+
+      - name: total_invoice_amount
+        sql: "{CUBE}.invoice_amount"
+        type: sum
+        title: Total Invoice Amount
+
+      - name: completed_count
+        sql: "{CUBE}.id"
+        type: count
+        filters:
+          - sql: "{CUBE}.status = 3"
+        title: Completed Orders
+
+      - name: pending_count
+        sql: "{CUBE}.id"
+        type: count
+        filters:
+          - sql: "{CUBE}.status = 1"
+        title: Pending Orders
+
+      - name: cancelled_count
+        sql: "{CUBE}.id"
+        type: count
+        filters:
+          - sql: "{CUBE}.status = 4"
+        title: Cancelled Orders
+
+      - name: distinct_customers
+        sql: "{CUBE}.cus_code"
+        type: count_distinct
+        title: Distinct Customers
+
+      - name: distinct_suppliers
+        sql: "{CUBE}.sup_code"
+        type: count_distinct
+        title: Distinct Suppliers
