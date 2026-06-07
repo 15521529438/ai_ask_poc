@@ -1,0 +1,56 @@
+views:
+  - name: auxiliary_detail_view
+    description: >
+      SAP辅助核算凭证明细视图。包含过账日期、公司、科目、利润中心、
+      成本中心、客户、供应商等维度，以及借方/贷方/净额/累计余额等财务指标，
+      支持多维度的费用穿透分析与风险识别（含敏感词、风险类型字段）。
+
+    cubes:
+      - join_path: t_auxiliary_detail
+        prefix: false
+        includes:
+          - id
+          - company_code
+          - fiscal_year
+          - posting_period
+          - sap_fiscal_year
+          - sap_period
+          - posting_date
+          - voucher_no
+          - voucher_seq
+          - line_item
+          - account_code
+          - account_name
+          - opposite_account
+          - opposite_account_desc
+          - text_summary
+          - customer_code
+          - customer_name
+          - supplier_code
+          - supplier_name
+          - wbs_element
+          - wbs_desc
+          - cost_center
+          - cost_center_name
+          - profit_center
+          - profit_center_name
+          - region_code
+          - region_name
+          - balance_direction
+          - currency
+          - sensitive_flag
+          - sensitive_word
+          - risk_type
+          - created_at
+          - count
+          - total_debit_amount
+          - total_credit_amount
+          - total_net_amount
+          - total_balance_amount
+          - avg_debit_amount
+          - avg_credit_amount
+          - distinct_vouchers
+          - distinct_accounts
+          - distinct_suppliers
+          - distinct_customers
+          - sensitive_count

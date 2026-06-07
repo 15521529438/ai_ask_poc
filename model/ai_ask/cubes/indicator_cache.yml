@@ -1,0 +1,82 @@
+cubes:
+  - name: indicator_cache
+    sql_table: ai_ask_poc.indicator_cache
+    public: false
+    title: 指标计算缓存
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: indicator_code
+        sql: "{CUBE}.indicator_code"
+        type: string
+        title: 指标代码
+
+      - name: company_code
+        sql: "{CUBE}.company_code"
+        type: string
+        title: 公司代码
+
+      - name: fiscal_year
+        sql: "{CUBE}.fiscal_year"
+        type: string
+        title: 财年
+
+      - name: posting_period
+        sql: "{CUBE}.posting_period"
+        type: string
+        title: 过账期间
+
+      - name: indicator_name
+        sql: "{CUBE}.indicator_name"
+        type: string
+        title: 指标名称
+
+      - name: category
+        sql: "{CUBE}.category"
+        type: string
+        title: 指标分类
+
+      - name: unit
+        sql: "{CUBE}.unit"
+        type: string
+        title: 单位
+
+      - name: chart_type
+        sql: "{CUBE}.chart_type"
+        type: string
+        title: 图表类型
+
+      - name: threshold_yoy
+        sql: "{CUBE}.threshold_yoy"
+        type: number
+        title: 同比阈值
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+      - name: updated_at
+        sql: "{CUBE}.updated_at"
+        type: time
+        title: 更新时间
+
+    measures:
+      - name: count
+        type: count
+        title: 缓存记录数
+
+      - name: total_indicator_value
+        sql: "{CUBE}.indicator_value"
+        type: sum
+        title: 指标值合计
+
+      - name: avg_indicator_value
+        sql: "{CUBE}.indicator_value"
+        type: avg
+        title: 平均指标值

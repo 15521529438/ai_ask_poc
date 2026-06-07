@@ -1,0 +1,192 @@
+cubes:
+  - name: t_balance_summary
+    sql_table: ai_ask_poc.t_balance_summary
+    public: false
+    title: 科目余额汇总表
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: fiscal_year
+        sql: "{CUBE}.fiscal_year"
+        type: string
+        title: 会计年度
+
+      - name: posting_period
+        sql: "{CUBE}.posting_period"
+        type: string
+        title: 期间
+
+      - name: ledger_type
+        sql: "{CUBE}.ledger_type"
+        type: string
+        title: 账簿类型
+
+      - name: company_code
+        sql: "{CUBE}.company_code"
+        type: string
+        title: 公司代码
+
+      - name: company_name
+        sql: "{CUBE}.company_name"
+        type: string
+        title: 公司名称
+
+      - name: account_code
+        sql: "{CUBE}.account_code"
+        type: string
+        title: 总账科目号
+
+      - name: account_name
+        sql: "{CUBE}.account_name"
+        type: string
+        title: 总账科目长文本
+
+      - name: expense_type
+        sql: "{CUBE}.expense_type"
+        type: string
+        title: 费用类别（MGMT/SELL/FIN）
+
+      - name: cost_center
+        sql: "{CUBE}.cost_center"
+        type: string
+        title: 成本中心
+
+      - name: cost_center_name
+        sql: "{CUBE}.cost_center_name"
+        type: string
+        title: 成本中心名称
+
+      - name: profit_center
+        sql: "{CUBE}.profit_center"
+        type: string
+        title: 利润中心
+
+      - name: profit_center_name
+        sql: "{CUBE}.profit_center_name"
+        type: string
+        title: 利润中心名称
+
+      - name: wbs_element
+        sql: "{CUBE}.wbs_element"
+        type: string
+        title: WBS元素
+
+      - name: wbs_desc
+        sql: "{CUBE}.wbs_desc"
+        type: string
+        title: WBS描述
+
+      - name: customer_code
+        sql: "{CUBE}.customer_code"
+        type: string
+        title: 客户代码
+
+      - name: customer_name
+        sql: "{CUBE}.customer_name"
+        type: string
+        title: 客户名称
+
+      - name: supplier_code
+        sql: "{CUBE}.supplier_code"
+        type: string
+        title: 供应商代码
+
+      - name: supplier_name
+        sql: "{CUBE}.supplier_name"
+        type: string
+        title: 供应商名称
+
+      - name: region_code
+        sql: "{CUBE}.region_code"
+        type: string
+        title: 地区代码
+
+      - name: region_name
+        sql: "{CUBE}.region_name"
+        type: string
+        title: 地区名称
+
+      - name: currency
+        sql: "{CUBE}.currency"
+        type: string
+        title: 货币
+
+      - name: opening_direction
+        sql: "{CUBE}.opening_direction"
+        type: string
+        title: 期初余额方向
+
+      - name: closing_direction
+        sql: "{CUBE}.closing_direction"
+        type: string
+        title: 期末余额方向
+
+      - name: budget_source
+        sql: "{CUBE}.budget_source"
+        type: string
+        title: 预算来源
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+    measures:
+      - name: count
+        type: count
+        title: 记录数
+
+      - name: total_opening_balance
+        sql: "{CUBE}.opening_balance"
+        type: sum
+        title: 期初金额合计
+
+      - name: total_current_debit
+        sql: "{CUBE}.current_debit"
+        type: sum
+        title: 本期借方金额合计
+
+      - name: total_current_credit
+        sql: "{CUBE}.current_credit"
+        type: sum
+        title: 本期贷方金额合计
+
+      - name: total_current_net
+        sql: "{CUBE}.current_net"
+        type: sum
+        title: 本期净发生额合计
+
+      - name: total_ytd_debit
+        sql: "{CUBE}.ytd_debit"
+        type: sum
+        title: 本年累计借方合计
+
+      - name: total_ytd_credit
+        sql: "{CUBE}.ytd_credit"
+        type: sum
+        title: 本年累计贷方合计
+
+      - name: total_ytd_net
+        sql: "{CUBE}.ytd_net"
+        type: sum
+        title: 本年累计净发生额合计
+
+      - name: total_closing_balance
+        sql: "{CUBE}.closing_balance"
+        type: sum
+        title: 期末余额合计
+
+      - name: total_budget_amount
+        sql: "{CUBE}.budget_amount"
+        type: sum
+        title: 预算金额合计
+
+      - name: distinct_accounts
+        sql: "{CUBE}.account_code"
+        type: count_distinct
+        title: 科目数量

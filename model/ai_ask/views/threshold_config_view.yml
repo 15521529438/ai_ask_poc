@@ -1,0 +1,22 @@
+views:
+  - name: threshold_config_view
+    description: >
+      风险阈值配置视图。包含风险类型、阈值维度、比较运算符、阈值数值、单位、
+      规则说明及启用状态等字段，供风控模型读取规则元数据，驱动动态风险预警判断。
+
+    cubes:
+      - join_path: t_threshold_config
+        prefix: false
+        includes:
+          - id
+          - risk_type
+          - dimension
+          - operator
+          - threshold_value
+          - unit
+          - description
+          - is_active
+          - created_at
+          - updated_at
+          - count
+          - active_count

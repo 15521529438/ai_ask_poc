@@ -1,0 +1,24 @@
+views:
+  - name: staff_config_view
+    description: >
+      人数配置视图。包含公司代码、会计年度、期间、人数口径、数据来源及同步时间等
+      维度，以及期初人数合计、期末人数合计、平均在职人数等指标，
+      支持人员编制趋势与结构分析。
+
+    cubes:
+      - join_path: t_staff_config
+        prefix: false
+        includes:
+          - id
+          - company_code
+          - fiscal_year
+          - posting_period
+          - staff_scope
+          - data_source
+          - sync_time
+          - created_at
+          - updated_at
+          - count
+          - total_opening_staff_count
+          - total_closing_staff_count
+          - avg_staff

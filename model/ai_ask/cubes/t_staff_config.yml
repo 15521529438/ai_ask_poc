@@ -1,0 +1,72 @@
+cubes:
+  - name: t_staff_config
+    sql_table: ai_ask_poc.t_staff_config
+    public: false
+    title: 人数配置表
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: company_code
+        sql: "{CUBE}.company_code"
+        type: string
+        title: 公司代码
+
+      - name: fiscal_year
+        sql: "{CUBE}.fiscal_year"
+        type: string
+        title: 会计年度
+
+      - name: posting_period
+        sql: "{CUBE}.posting_period"
+        type: string
+        title: 期间
+
+      - name: staff_scope
+        sql: "{CUBE}.staff_scope"
+        type: string
+        title: 人数口径
+
+      - name: data_source
+        sql: "{CUBE}.data_source"
+        type: string
+        title: 数据来源（HR_SYNC/MANUAL/IMPORT）
+
+      - name: sync_time
+        sql: "{CUBE}.sync_time"
+        type: time
+        title: 同步时间
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+      - name: updated_at
+        sql: "{CUBE}.updated_at"
+        type: time
+        title: 更新时间
+
+    measures:
+      - name: count
+        type: count
+        title: 记录数
+
+      - name: total_opening_staff_count
+        sql: "{CUBE}.opening_staff_count"
+        type: sum
+        title: 期初人数合计
+
+      - name: total_closing_staff_count
+        sql: "{CUBE}.closing_staff_count"
+        type: sum
+        title: 期末人数合计
+
+      - name: avg_staff
+        sql: "({CUBE}.opening_staff_count + {CUBE}.closing_staff_count) / 2"
+        type: avg
+        title: 平均在职人数

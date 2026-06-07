@@ -1,0 +1,48 @@
+views:
+  - name: balance_summary_view
+    description: >
+      科目余额汇总视图。包含财年/期间、公司、科目、费用类别、成本中心、利润中心等
+      维度，以及期初/本期借贷/本期净额/本年累计/期末余额/预算等财务指标，
+      支持预算对比与账期纵向趋势分析。
+
+    cubes:
+      - join_path: t_balance_summary
+        prefix: false
+        includes:
+          - id
+          - fiscal_year
+          - posting_period
+          - ledger_type
+          - company_code
+          - company_name
+          - account_code
+          - account_name
+          - expense_type
+          - cost_center
+          - cost_center_name
+          - profit_center
+          - profit_center_name
+          - wbs_element
+          - wbs_desc
+          - customer_code
+          - customer_name
+          - supplier_code
+          - supplier_name
+          - region_code
+          - region_name
+          - currency
+          - opening_direction
+          - closing_direction
+          - budget_source
+          - created_at
+          - count
+          - total_opening_balance
+          - total_current_debit
+          - total_current_credit
+          - total_current_net
+          - total_ytd_debit
+          - total_ytd_credit
+          - total_ytd_net
+          - total_closing_balance
+          - total_budget_amount
+          - distinct_accounts

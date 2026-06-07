@@ -1,0 +1,67 @@
+cubes:
+  - name: t_income_summary
+    sql_table: ai_ask_poc.t_income_summary
+    public: false
+    title: 利润摘要表
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: company_code
+        sql: "{CUBE}.company_code"
+        type: string
+        title: 公司代码
+
+      - name: fiscal_year
+        sql: "{CUBE}.fiscal_year"
+        type: string
+        title: 会计年度
+
+      - name: posting_period
+        sql: "{CUBE}.posting_period"
+        type: string
+        title: 期间
+
+      - name: item_name
+        sql: "{CUBE}.item_name"
+        type: string
+        title: 项目名称
+
+      - name: line_no
+        sql: "{CUBE}.line_no"
+        type: number
+        title: 行次
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+    measures:
+      - name: count
+        type: count
+        title: 记录数
+
+      - name: total_current_month_amount
+        sql: "{CUBE}.current_month"
+        type: sum
+        title: 本月发生额合计
+
+      - name: total_ytd_amount
+        sql: "{CUBE}.ytd_amount"
+        type: sum
+        title: 本年累计数合计
+
+      - name: total_prior_year_ytd_amount
+        sql: "{CUBE}.prior_ytd_amount"
+        type: sum
+        title: 上年同期累计数合计
+
+      - name: avg_yoy_change_rate
+        sql: "{CUBE}.yoy_change_rate"
+        type: avg
+        title: 平均同比变动率

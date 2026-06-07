@@ -1,0 +1,28 @@
+views:
+  - name: subject_view
+    description: >
+      科目映射视图。包含费用项目、级次、费用分类一/二、科目编码/名称/级次、
+      费用类别（MGMT/SELL/FIN）、成本费用分类、成本中心及启用状态等字段，
+      支持费用科目多层级查询与映射分析。
+
+    cubes:
+      - join_path: t_subject
+        prefix: false
+        includes:
+          - id
+          - expense_item
+          - item_level
+          - is_leaf
+          - category_1
+          - category_2
+          - account_code
+          - account_name
+          - account_level
+          - expense_type
+          - cost_category
+          - cost_center
+          - is_active
+          - created_at
+          - updated_at
+          - count
+          - active_count
