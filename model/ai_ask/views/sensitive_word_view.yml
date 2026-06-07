@@ -1,0 +1,20 @@
+views:
+  - name: sensitive_word_view
+    description: >
+      敏感词配置视图。包含敏感词、商品排除词、供应商排除词、命中次数/时间及启用状态等
+      维度，以及敏感词总数与启用敏感词数量等指标，支持凭证文本风险扫描规则管理。
+
+    cubes:
+      - join_path: t_sensitive_word_config
+        prefix: false
+        includes:
+          - id
+          - sensitive_word
+          - exclude_goods
+          - exclude_supplier
+          - hit_count
+          - last_hit_at
+          - is_active
+          - created_at
+          - count
+          - active_count

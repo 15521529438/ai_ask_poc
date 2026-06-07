@@ -1,0 +1,58 @@
+cubes:
+  - name: t_sensitive_word_config
+    sql_table: ai_ask_poc.t_sensitive_word_config
+    public: false
+    title: 敏感词配置表
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: sensitive_word
+        sql: "{CUBE}.sensitive_word"
+        type: string
+        title: 敏感词
+
+      - name: exclude_goods
+        sql: "{CUBE}.exclude_goods"
+        type: string
+        title: 商品排除词
+
+      - name: exclude_supplier
+        sql: "{CUBE}.exclude_supplier"
+        type: string
+        title: 供应商排除词
+
+      - name: hit_count
+        sql: "{CUBE}.hit_count"
+        type: number
+        title: 命中次数
+
+      - name: last_hit_at
+        sql: "{CUBE}.last_hit_at"
+        type: time
+        title: 最近命中时间
+
+      - name: is_active
+        sql: "{CUBE}.is_active"
+        type: string
+        title: 是否启用
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+    measures:
+      - name: count
+        type: count
+        title: 敏感词数量
+
+      - name: active_count
+        type: count
+        filters:
+          - sql: "{CUBE}.is_active = '1'"
+        title: 启用敏感词数量

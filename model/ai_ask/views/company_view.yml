@@ -1,0 +1,29 @@
+views:
+  - name: company_view
+    description: |
+      企业公司三级架构视图。company_level 表示层级：1=集团根节点，2=二级子公司，3=三级子公司。
+      层级关系通过 id 与 parent_id 追溯（level1_code/level2_code 实际为空，不可用）。
+
+      关键字段说明：
+      - ancestor_code：该公司所属的 level=1 根节点的 code。一级公司取自身 code，二级公司取其 parent 的 code，三级公司取其祖父的 code。
+      - parent_code：直属上级公司的 code，一级公司为 NULL。
+
+      典型穿透查询用法：
+      - 查询某集团及其所有下级公司：WHERE ancestor_code = 'X' OR code = 'X'
+      - 查询某二级公司及其所有子公司：WHERE parent_code = 'X' OR code = 'X'
+
+    cubes:
+      - join_path: t_company
+        prefix: false
+        includes:
+          - id
+          - code
+          - name
+          - company_level
+          - parent_id
+          - source
+          - created_at
+          - updated_at
+          - count
+          - ancestor_code
+          - parent_code

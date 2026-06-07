@@ -1,0 +1,23 @@
+views:
+  - name: budget_config_view
+    description: >
+      预算配置视图。包含公司代码、会计年度、期间、费用项目、科目编码及数据来源等
+      维度，以及预算金额合计、实际金额合计等指标，支持预算管理与执行对比分析。
+
+    cubes:
+      - join_path: t_budget_config
+        prefix: false
+        includes:
+          - id
+          - company_code
+          - fiscal_year
+          - posting_period
+          - expense_item
+          - account_code
+          - data_source
+          - sync_time
+          - created_at
+          - updated_at
+          - count
+          - total_budget_amount
+          - total_actual_amount

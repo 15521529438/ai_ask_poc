@@ -1,0 +1,23 @@
+views:
+  - name: income_summary_view
+    description: >
+      利润摘要视图。包含公司、会计年度/期间、利润表项目及行次等维度，
+      以及本月发生额、本年累计、上年同期累计及同比变动率等指标，
+      支持利润表纵向与同比分析。
+
+    cubes:
+      - join_path: t_income_summary
+        prefix: false
+        includes:
+          - id
+          - company_code
+          - fiscal_year
+          - posting_period
+          - item_name
+          - line_no
+          - created_at
+          - count
+          - total_current_month_amount
+          - total_ytd_amount
+          - total_prior_year_ytd_amount
+          - avg_yoy_change_rate

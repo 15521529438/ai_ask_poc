@@ -1,0 +1,83 @@
+cubes:
+  - name: t_indicator_config
+    sql_table: ai_ask_poc.t_indicator_config
+    public: false
+    title: 指标配置表
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: indicator_code
+        sql: "{CUBE}.indicator_code"
+        type: string
+        title: 指标编码
+
+      - name: indicator_name
+        sql: "{CUBE}.indicator_name"
+        type: string
+        title: 指标名称
+
+      - name: category
+        sql: "{CUBE}.category"
+        type: string
+        title: 指标类别（相对值/效率/偏差）
+
+      - name: formula_template
+        sql: "{CUBE}.formula_template"
+        type: string
+        title: 公式模板（含变量占位符）
+
+      - name: chart_type
+        sql: "{CUBE}.chart_type"
+        type: string
+        title: 图表类型（PIE/BAR/HEATMAP）
+
+      - name: unit
+        sql: "{CUBE}.unit"
+        type: string
+        title: 单位
+
+      - name: decimals
+        sql: "{CUBE}.decimals"
+        type: number
+        title: 小数位数
+
+      - name: threshold_yoy
+        sql: "{CUBE}.threshold_yoy"
+        type: number
+        title: 同比预警阈值
+
+      - name: is_active
+        sql: "{CUBE}.is_active"
+        type: string
+        title: 是否启用
+
+      - name: sort_order
+        sql: "{CUBE}.sort_order"
+        type: number
+        title: 排序序号
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+      - name: updated_at
+        sql: "{CUBE}.updated_at"
+        type: time
+        title: 更新时间
+
+    measures:
+      - name: count
+        type: count
+        title: 指标数量
+
+      - name: active_count
+        type: count
+        filters:
+          - sql: "{CUBE}.is_active = '1'"
+        title: 启用指标数量

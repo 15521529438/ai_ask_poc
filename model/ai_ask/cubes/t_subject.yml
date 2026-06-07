@@ -1,0 +1,93 @@
+cubes:
+  - name: t_subject
+    sql_table: ai_ask_poc.t_subject
+    public: false
+    title: 科目映射表
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: expense_item
+        sql: "{CUBE}.expense_item"
+        type: string
+        title: 费用项目
+
+      - name: item_level
+        sql: "{CUBE}.item_level"
+        type: number
+        title: 级次
+
+      - name: is_leaf
+        sql: "{CUBE}.is_leaf"
+        type: string
+        title: 费用项目是否末级（Y/N）
+
+      - name: category_1
+        sql: "{CUBE}.category_1"
+        type: string
+        title: 费用分类一
+
+      - name: category_2
+        sql: "{CUBE}.category_2"
+        type: string
+        title: 费用分类二
+
+      - name: account_code
+        sql: "{CUBE}.account_code"
+        type: string
+        title: 科目编码
+
+      - name: account_name
+        sql: "{CUBE}.account_name"
+        type: string
+        title: 科目名称
+
+      - name: account_level
+        sql: "{CUBE}.account_level"
+        type: number
+        title: 科目级次
+
+      - name: expense_type
+        sql: "{CUBE}.expense_type"
+        type: string
+        title: 费用类别（MGMT/SELL/FIN）
+
+      - name: cost_category
+        sql: "{CUBE}.cost_category"
+        type: string
+        title: 成本费用分类
+
+      - name: cost_center
+        sql: "{CUBE}.cost_center"
+        type: string
+        title: 成本中心
+
+      - name: is_active
+        sql: "{CUBE}.is_active"
+        type: string
+        title: 是否启用
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+      - name: updated_at
+        sql: "{CUBE}.updated_at"
+        type: time
+        title: 更新时间
+
+    measures:
+      - name: count
+        type: count
+        title: 科目数量
+
+      - name: active_count
+        type: count
+        filters:
+          - sql: "{CUBE}.is_active = '1'"
+        title: 启用科目数量

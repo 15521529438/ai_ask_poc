@@ -1,0 +1,103 @@
+cubes:
+  - name: t_company
+    sql_table: ai_ask_poc.t_company
+    public: false
+    title: 企业公司架构表
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: level1_code
+        sql: "{CUBE}.level1_code"
+        type: string
+        title: 一级公司编号
+
+      - name: level1_name
+        sql: "{CUBE}.level1_name"
+        type: string
+        title: 一级公司名称
+
+      - name: level2_code
+        sql: "{CUBE}.level2_code"
+        type: string
+        title: 二级公司编号
+
+      - name: level2_name
+        sql: "{CUBE}.level2_name"
+        type: string
+        title: 二级公司名称
+
+      - name: level3_code
+        sql: "{CUBE}.level3_code"
+        type: string
+        title: 三级公司编号（末级）
+
+      - name: level3_name
+        sql: "{CUBE}.level3_name"
+        type: string
+        title: 三级公司名称
+
+      - name: code
+        sql: "{CUBE}.code"
+        type: string
+        title: 公司代码
+
+      - name: name
+        sql: "{CUBE}.name"
+        type: string
+        title: 公司名称
+
+      - name: company_level
+        sql: "{CUBE}.company_level"
+        type: number
+        title: 公司层级
+
+      - name: parent_id
+        sql: "{CUBE}.parent_id"
+        type: number
+        title: 父节点ID
+
+      - name: ancestor_code
+        title: 根祖先公司Code
+        sql: |
+          CASE
+            WHEN {CUBE}.company_level = 1 THEN {CUBE}.code
+            WHEN {CUBE}.company_level = 2 THEN (
+              SELECT p.code FROM ai_ask_poc.t_company p WHERE p.id = {CUBE}.parent_id
+            )
+            WHEN {CUBE}.company_level = 3 THEN (
+              SELECT p2.code FROM ai_ask_poc.t_company p1
+              JOIN ai_ask_poc.t_company p2 ON p2.id = p1.parent_id
+              WHERE p1.id = {CUBE}.parent_id
+            )
+          END
+        type: string
+
+      - name: parent_code
+        title: 上级公司Code
+        sql: "(SELECT p.code FROM ai_ask_poc.t_company p WHERE p.id = {CUBE}.parent_id)"
+        type: string
+
+      - name: source
+        sql: "{CUBE}.source"
+        type: string
+        title: 数据来源
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+      - name: updated_at
+        sql: "{CUBE}.updated_at"
+        type: time
+        title: 更新时间
+
+    measures:
+      - name: count
+        type: count
+        title: 公司数量

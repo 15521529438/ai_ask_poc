@@ -1,0 +1,233 @@
+cubes:
+  - name: t_auxiliary_detail
+    sql_table: ai_ask_poc.t_auxiliary_detail
+    public: false
+    title: SAP辅助核算明细
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: company_code
+        sql: "{CUBE}.company_code"
+        type: string
+        title: 公司代码
+
+      - name: fiscal_year
+        sql: "{CUBE}.fiscal_year"
+        type: string
+        title: 会计年度
+
+      - name: posting_period
+        sql: "{CUBE}.posting_period"
+        type: string
+        title: 期间
+
+      - name: sap_fiscal_year
+        sql: "{CUBE}.sap_fiscal_year"
+        type: string
+        title: SAP财年
+
+      - name: sap_period
+        sql: "{CUBE}.sap_period"
+        type: string
+        title: SAP期间
+
+      - name: posting_date
+        sql: "{CUBE}.posting_date"
+        type: time
+        title: 过账日期
+
+      - name: voucher_no
+        sql: "{CUBE}.voucher_no"
+        type: string
+        title: 凭证编号
+
+      - name: voucher_seq
+        sql: "{CUBE}.voucher_seq"
+        type: string
+        title: 凭证序号
+
+      - name: line_item
+        sql: "{CUBE}.line_item"
+        type: string
+        title: 行项目
+
+      - name: account_code
+        sql: "{CUBE}.account_code"
+        type: string
+        title: 科目号
+
+      - name: account_name
+        sql: "{CUBE}.account_name"
+        type: string
+        title: 总账科目长文本
+
+      - name: opposite_account
+        sql: "{CUBE}.opposite_account"
+        type: string
+        title: 对方科目号
+
+      - name: opposite_account_desc
+        sql: "{CUBE}.opposite_account_desc"
+        type: string
+        title: 对方科目描述
+
+      - name: text_summary
+        sql: "{CUBE}.text_summary"
+        type: string
+        title: 文本摘要描述
+
+      - name: customer_code
+        sql: "{CUBE}.customer_code"
+        type: string
+        title: 客户代码
+
+      - name: customer_name
+        sql: "{CUBE}.customer_name"
+        type: string
+        title: 客户名称
+
+      - name: supplier_code
+        sql: "{CUBE}.supplier_code"
+        type: string
+        title: 供应商代码
+
+      - name: supplier_name
+        sql: "{CUBE}.supplier_name"
+        type: string
+        title: 供应商名称
+
+      - name: wbs_element
+        sql: "{CUBE}.wbs_element"
+        type: string
+        title: WBS元素
+
+      - name: wbs_desc
+        sql: "{CUBE}.wbs_desc"
+        type: string
+        title: WBS描述
+
+      - name: cost_center
+        sql: "{CUBE}.cost_center"
+        type: string
+        title: 成本中心
+
+      - name: cost_center_name
+        sql: "{CUBE}.cost_center_name"
+        type: string
+        title: 成本中心名称
+
+      - name: profit_center
+        sql: "{CUBE}.profit_center"
+        type: string
+        title: 利润中心
+
+      - name: profit_center_name
+        sql: "{CUBE}.profit_center_name"
+        type: string
+        title: 利润中心名称
+
+      - name: region_code
+        sql: "{CUBE}.region_code"
+        type: string
+        title: 地区代码
+
+      - name: region_name
+        sql: "{CUBE}.region_name"
+        type: string
+        title: 地区名称
+
+      - name: balance_direction
+        sql: "{CUBE}.balance_direction"
+        type: string
+        title: 余额方向
+
+      - name: currency
+        sql: "{CUBE}.currency"
+        type: string
+        title: 货币
+
+      - name: sensitive_flag
+        sql: "{CUBE}.sensitive_flag"
+        type: string
+        title: 敏感标志
+
+      - name: sensitive_word
+        sql: "{CUBE}.sensitive_word"
+        type: string
+        title: 命中敏感词
+
+      - name: risk_type
+        sql: "{CUBE}.risk_type"
+        type: string
+        title: 风险类型
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+    measures:
+      - name: count
+        type: count
+        title: 凭证行数
+
+      - name: total_debit_amount
+        sql: "{CUBE}.debit_amount"
+        type: sum
+        title: 借方金额合计
+
+      - name: total_credit_amount
+        sql: "{CUBE}.credit_amount"
+        type: sum
+        title: 贷方金额合计
+
+      - name: total_net_amount
+        sql: "{CUBE}.debit_amount - {CUBE}.credit_amount"
+        type: sum
+        title: 净金额合计
+
+      - name: total_balance_amount
+        sql: "{CUBE}.balance_amount"
+        type: sum
+        title: 累计余额合计
+
+      - name: avg_debit_amount
+        sql: "{CUBE}.debit_amount"
+        type: avg
+        title: 平均借方金额
+
+      - name: avg_credit_amount
+        sql: "{CUBE}.credit_amount"
+        type: avg
+        title: 平均贷方金额
+
+      - name: distinct_vouchers
+        sql: "{CUBE}.voucher_no"
+        type: count_distinct
+        title: 凭证数量
+
+      - name: distinct_accounts
+        sql: "{CUBE}.account_code"
+        type: count_distinct
+        title: 科目数量
+
+      - name: distinct_suppliers
+        sql: "{CUBE}.supplier_code"
+        type: count_distinct
+        title: 供应商数量
+
+      - name: distinct_customers
+        sql: "{CUBE}.customer_code"
+        type: count_distinct
+        title: 客户数量
+
+      - name: sensitive_count
+        type: count
+        filters:
+          - sql: "{CUBE}.sensitive_flag = '1'"
+        title: 敏感记录数
