@@ -1,0 +1,34 @@
+views:
+  - name: indicator_cache_view
+    description: >
+      指标缓存视图（分析查询主表）。包含公司编码/名称、年度、期间类型、
+      业务维度、费用大类等维度，以及全口径费用合计、营业收入、利润总额、
+      净利润、四项费用、平均人数、预算金额、合同销售额/履约成本等指标，
+      是 AI 问数分析的核心查询入口。
+
+    cubes:
+      - join_path: indicator_cache
+        prefix: false
+        includes:
+          - id
+          - company_code
+          - company_name
+          - data_year
+          - period_type
+          - business_item
+          - cost_category
+          - created_at
+          - updated_at
+          - count
+          - total_net_amount
+          - total_revenue
+          - total_total_profit
+          - total_net_profit
+          - total_selling_expense
+          - total_admin_expense
+          - total_rd_expense
+          - total_finance_expense
+          - total_employee_count
+          - total_budget_amount
+          - total_contract_sales
+          - total_contract_cost

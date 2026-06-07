@@ -16,6 +16,7 @@ views:
           - unit
           - description
           - is_active
+          - responsible_person
           - created_at
           - updated_at
           - count

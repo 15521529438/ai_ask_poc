@@ -11,50 +11,35 @@ cubes:
         primary_key: true
         title: 主键ID
 
-      - name: indicator_code
-        sql: "{CUBE}.indicator_code"
-        type: string
-        title: 指标代码
-
       - name: company_code
         sql: "{CUBE}.company_code"
         type: string
-        title: 公司代码
+        title: 公司编码
 
-      - name: fiscal_year
-        sql: "{CUBE}.fiscal_year"
+      - name: company_name
+        sql: "{CUBE}.company_name"
         type: string
-        title: 财年
+        title: 公司名称
 
-      - name: posting_period
-        sql: "{CUBE}.posting_period"
+      - name: data_year
+        sql: "{CUBE}.data_year"
         type: string
-        title: 过账期间
+        title: 年度
 
-      - name: indicator_name
-        sql: "{CUBE}.indicator_name"
+      - name: period_type
+        sql: "{CUBE}.period_type"
         type: string
-        title: 指标名称
+        title: 期间类型
 
-      - name: category
-        sql: "{CUBE}.category"
+      - name: business_item
+        sql: "{CUBE}.business_item"
         type: string
-        title: 指标分类
+        title: 业务维度
 
-      - name: unit
-        sql: "{CUBE}.unit"
+      - name: cost_category
+        sql: "{CUBE}.cost_category"
         type: string
-        title: 单位
-
-      - name: chart_type
-        sql: "{CUBE}.chart_type"
-        type: string
-        title: 图表类型
-
-      - name: threshold_yoy
-        sql: "{CUBE}.threshold_yoy"
-        type: number
-        title: 同比阈值
+        title: 费用大类
 
       - name: created_at
         sql: "{CUBE}.created_at"
@@ -71,12 +56,62 @@ cubes:
         type: count
         title: 缓存记录数
 
-      - name: total_indicator_value
-        sql: "{CUBE}.indicator_value"
+      - name: total_net_amount
+        sql: "{CUBE}.net_amount"
         type: sum
-        title: 指标值合计
+        title: 全口径费用合计
 
-      - name: avg_indicator_value
-        sql: "{CUBE}.indicator_value"
-        type: avg
-        title: 平均指标值
+      - name: total_revenue
+        sql: "{CUBE}.revenue"
+        type: sum
+        title: 营业收入合计
+
+      - name: total_total_profit
+        sql: "{CUBE}.total_profit"
+        type: sum
+        title: 利润总额合计
+
+      - name: total_net_profit
+        sql: "{CUBE}.net_profit"
+        type: sum
+        title: 净利润合计
+
+      - name: total_selling_expense
+        sql: "{CUBE}.selling_expense"
+        type: sum
+        title: 销售费用合计
+
+      - name: total_admin_expense
+        sql: "{CUBE}.admin_expense"
+        type: sum
+        title: 管理费用合计
+
+      - name: total_rd_expense
+        sql: "{CUBE}.rd_expense"
+        type: sum
+        title: 研发支出合计
+
+      - name: total_finance_expense
+        sql: "{CUBE}.finance_expense"
+        type: sum
+        title: 财务费用合计
+
+      - name: total_employee_count
+        sql: "{CUBE}.employee_count"
+        type: sum
+        title: 平均人数合计
+
+      - name: total_budget_amount
+        sql: "{CUBE}.budget_amount"
+        type: sum
+        title: 预算金额合计
+
+      - name: total_contract_sales
+        sql: "{CUBE}.contract_sales"
+        type: sum
+        title: 合同销售额合计
+
+      - name: total_contract_cost
+        sql: "{CUBE}.contract_cost"
+        type: sum
+        title: 合同履约成本合计

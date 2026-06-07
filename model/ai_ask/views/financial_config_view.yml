@@ -20,6 +20,9 @@ views:
           - threshold_yoy
           - is_active
           - sort_order
+          - analysis_dimension
+          - execution_cycle
+          - report_template
           - created_at
           - updated_at
           - count

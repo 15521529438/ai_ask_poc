@@ -151,6 +151,11 @@ cubes:
         type: string
         title: 货币
 
+      - name: unit
+        sql: "'元'"
+        type: string
+        title: 单位
+
       - name: sensitive_flag
         sql: "{CUBE}.sensitive_flag"
         type: string

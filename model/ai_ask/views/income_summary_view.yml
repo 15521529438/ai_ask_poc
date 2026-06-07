@@ -15,6 +15,7 @@ views:
           - posting_period
           - item_name
           - line_no
+          - unit
           - created_at
           - count
           - total_current_month_amount

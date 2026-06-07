@@ -1,0 +1,28 @@
+views:
+  - name: competitor_data_view
+    description: >
+      竞对数据视图。包含公司编码/名称、报告年度、数据来源及原始数据等维度，
+      以及营业总收入、管理费用、销售费用、研发费用、财务费用、净利润、
+      总资产、员工总数等指标，支持竞品财务对标分析。
+
+    cubes:
+      - join_path: t_competitor_data
+        prefix: false
+        includes:
+          - id
+          - company_code
+          - company_name
+          - report_year
+          - data_source
+          - raw_data
+          - created_at
+          - updated_at
+          - count
+          - total_revenue
+          - total_mgmt_expense
+          - total_selling_expense
+          - total_rd_expense
+          - total_finance_expense
+          - total_net_profit
+          - total_assets
+          - total_employee_count

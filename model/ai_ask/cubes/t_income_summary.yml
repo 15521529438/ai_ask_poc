@@ -36,6 +36,11 @@ cubes:
         type: number
         title: 行次
 
+      - name: unit
+        sql: "'元'"
+        type: string
+        title: 单位
+
       - name: created_at
         sql: "{CUBE}.created_at"
         type: time

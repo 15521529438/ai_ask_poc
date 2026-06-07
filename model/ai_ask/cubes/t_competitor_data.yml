@@ -11,30 +11,30 @@ cubes:
         primary_key: true
         title: 主键ID
 
+      - name: company_code
+        sql: "{CUBE}.company_code"
+        type: string
+        title: 公司编码
+
       - name: company_name
         sql: "{CUBE}.company_name"
         type: string
         title: 公司名称
 
-      - name: fiscal_year
-        sql: "{CUBE}.fiscal_year"
+      - name: report_year
+        sql: "{CUBE}.report_year"
         type: string
-        title: 财年
-
-      - name: posting_period
-        sql: "{CUBE}.posting_period"
-        type: string
-        title: 过账期间
+        title: 报告年度
 
       - name: data_source
         sql: "{CUBE}.data_source"
         type: string
         title: 数据来源
 
-      - name: industry
-        sql: "{CUBE}.industry"
+      - name: raw_data
+        sql: "{CUBE}.raw_data"
         type: string
-        title: 行业
+        title: 原始数据
 
       - name: created_at
         sql: "{CUBE}.created_at"
@@ -54,17 +54,27 @@ cubes:
       - name: total_revenue
         sql: "{CUBE}.total_revenue"
         type: sum
-        title: 总收入合计
+        title: 营业总收入合计
 
-      - name: total_cost
-        sql: "{CUBE}.total_cost"
+      - name: total_mgmt_expense
+        sql: "{CUBE}.mgmt_expense"
         type: sum
-        title: 总成本合计
+        title: 管理费用合计
 
-      - name: total_gross_profit
-        sql: "{CUBE}.gross_profit"
+      - name: total_selling_expense
+        sql: "{CUBE}.selling_expense"
         type: sum
-        title: 毛利润合计
+        title: 销售费用合计
+
+      - name: total_rd_expense
+        sql: "{CUBE}.rd_expense"
+        type: sum
+        title: 研发费用合计
+
+      - name: total_finance_expense
+        sql: "{CUBE}.finance_expense"
+        type: sum
+        title: 财务费用合计
 
       - name: total_net_profit
         sql: "{CUBE}.net_profit"

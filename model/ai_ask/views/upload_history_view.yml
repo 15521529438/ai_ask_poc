@@ -1,0 +1,29 @@
+views:
+  - name: upload_history_view
+    description: >
+      上传记录视图。包含文件名、报表类型、公司编码、年度/期间、
+      导入/过滤/跳过行数、状态及错误信息等维度，以及导入总行数、
+      过滤总行数、跳过总行数、成功/失败次数等指标，支持数据导入审计。
+
+    cubes:
+      - join_path: t_upload_history
+        prefix: false
+        includes:
+          - id
+          - file_name
+          - report_type
+          - company_code
+          - fiscal_year
+          - posting_period
+          - rows_imported
+          - rows_filtered
+          - rows_skipped
+          - status
+          - error_msg
+          - created_at
+          - count
+          - total_rows_imported
+          - total_rows_filtered
+          - total_rows_skipped
+          - success_count
+          - failed_count

@@ -61,6 +61,21 @@ cubes:
         type: number
         title: 排序序号
 
+      - name: analysis_dimension
+        sql: "{CUBE}.analysis_dimension"
+        type: string
+        title: 分析维度
+
+      - name: execution_cycle
+        sql: "{CUBE}.execution_cycle"
+        type: string
+        title: 执行周期
+
+      - name: report_template
+        sql: "{CUBE}.report_template"
+        type: string
+        title: 报告模板
+
       - name: created_at
         sql: "{CUBE}.created_at"
         type: time

@@ -38,6 +38,7 @@ views:
           - region_name
           - balance_direction
           - currency
+          - unit
           - sensitive_flag
           - sensitive_word
           - risk_type

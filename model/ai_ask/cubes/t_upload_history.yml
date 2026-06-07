@@ -1,0 +1,99 @@
+cubes:
+  - name: t_upload_history
+    sql_table: ai_ask_poc.t_upload_history
+    public: false
+    title: 上传记录
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: file_name
+        sql: "{CUBE}.file_name"
+        type: string
+        title: 文件名
+
+      - name: report_type
+        sql: "{CUBE}.report_type"
+        type: string
+        title: 报表类型
+
+      - name: company_code
+        sql: "{CUBE}.company_code"
+        type: string
+        title: 公司编码
+
+      - name: fiscal_year
+        sql: "{CUBE}.fiscal_year"
+        type: string
+        title: 年度
+
+      - name: posting_period
+        sql: "{CUBE}.posting_period"
+        type: string
+        title: 期间
+
+      - name: rows_imported
+        sql: "{CUBE}.rows_imported"
+        type: number
+        title: 导入行数
+
+      - name: rows_filtered
+        sql: "{CUBE}.rows_filtered"
+        type: number
+        title: 过滤行数
+
+      - name: rows_skipped
+        sql: "{CUBE}.rows_skipped"
+        type: number
+        title: 跳过行数
+
+      - name: status
+        sql: "{CUBE}.status"
+        type: string
+        title: 状态
+
+      - name: error_msg
+        sql: "{CUBE}.error_msg"
+        type: string
+        title: 错误信息
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+    measures:
+      - name: count
+        type: count
+        title: 上传次数
+
+      - name: total_rows_imported
+        sql: "{CUBE}.rows_imported"
+        type: sum
+        title: 导入总行数
+
+      - name: total_rows_filtered
+        sql: "{CUBE}.rows_filtered"
+        type: sum
+        title: 过滤总行数
+
+      - name: total_rows_skipped
+        sql: "{CUBE}.rows_skipped"
+        type: sum
+        title: 跳过总行数
+
+      - name: success_count
+        type: count
+        filters:
+          - sql: "{CUBE}.status = 'SUCCESS'"
+        title: 成功次数
+
+      - name: failed_count
+        type: count
+        filters:
+          - sql: "{CUBE}.status = 'FAILED'"
+        title: 失败次数

@@ -1,0 +1,25 @@
+views:
+  - name: indicator_variable_view
+    description: >
+      变量字典视图。包含变量编码/名称、源表/字段、过滤条件、聚合方式、
+      计算公式及说明等字段，供指标配置解析 ${VAR} 变量引用时使用。
+
+    cubes:
+      - join_path: t_indicator_variable
+        prefix: false
+        includes:
+          - id
+          - variable_code
+          - variable_name
+          - source_table
+          - source_field
+          - source_filter
+          - aggregation
+          - calc_formula
+          - description
+          - sort_order
+          - is_active
+          - created_at
+          - updated_at
+          - count
+          - active_count

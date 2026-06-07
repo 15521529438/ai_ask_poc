@@ -1,0 +1,84 @@
+cubes:
+  - name: t_sensitive_scan_log
+    sql_table: ai_ask_poc.t_sensitive_scan_log
+    public: false
+    title: 敏感词扫描记录
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: company_code
+        sql: "{CUBE}.company_code"
+        type: string
+        title: 公司编码
+
+      - name: fiscal_year
+        sql: "{CUBE}.fiscal_year"
+        type: string
+        title: 年度
+
+      - name: scan_field
+        sql: "{CUBE}.scan_field"
+        type: string
+        title: 扫描字段
+
+      - name: total_scanned
+        sql: "{CUBE}.total_scanned"
+        type: number
+        title: 扫描条数
+
+      - name: total_hits
+        sql: "{CUBE}.total_hits"
+        type: number
+        title: 命中条数
+
+      - name: hit_words
+        sql: "{CUBE}.hit_words"
+        type: string
+        title: 命中词
+
+      - name: status
+        sql: "{CUBE}.status"
+        type: string
+        title: 状态
+
+      - name: error_msg
+        sql: "{CUBE}.error_msg"
+        type: string
+        title: 错误信息
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+    measures:
+      - name: count
+        type: count
+        title: 扫描次数
+
+      - name: total_scanned_sum
+        sql: "{CUBE}.total_scanned"
+        type: sum
+        title: 扫描总条数
+
+      - name: total_hits_sum
+        sql: "{CUBE}.total_hits"
+        type: sum
+        title: 命中总条数
+
+      - name: success_count
+        type: count
+        filters:
+          - sql: "{CUBE}.status = 'SUCCESS'"
+        title: 成功次数
+
+      - name: failed_count
+        type: count
+        filters:
+          - sql: "{CUBE}.status = 'FAILED'"
+        title: 失败次数

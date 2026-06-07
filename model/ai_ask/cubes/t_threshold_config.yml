@@ -46,6 +46,11 @@ cubes:
         type: string
         title: 是否启用
 
+      - name: responsible_person
+        sql: "{CUBE}.responsible_person"
+        type: string
+        title: 负责人
+
       - name: created_at
         sql: "{CUBE}.created_at"
         type: time

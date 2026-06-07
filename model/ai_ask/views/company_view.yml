@@ -21,6 +21,7 @@ views:
           - name
           - company_level
           - parent_id
+          - segment
           - source
           - created_at
           - updated_at

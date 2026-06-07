@@ -31,6 +31,7 @@ views:
           - region_code
           - region_name
           - currency
+          - unit
           - opening_direction
           - closing_direction
           - budget_source

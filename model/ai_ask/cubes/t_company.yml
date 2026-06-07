@@ -82,6 +82,11 @@ cubes:
         sql: "(SELECT p.code FROM ai_ask_poc.t_company p WHERE p.id = {CUBE}.parent_id)"
         type: string
 
+      - name: segment
+        sql: "{CUBE}.segment"
+        type: string
+        title: 业务板块
+
       - name: source
         sql: "{CUBE}.source"
         type: string

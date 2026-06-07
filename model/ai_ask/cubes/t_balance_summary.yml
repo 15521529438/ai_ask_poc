@@ -116,6 +116,11 @@ cubes:
         type: string
         title: 货币
 
+      - name: unit
+        sql: "'元'"
+        type: string
+        title: 单位
+
       - name: opening_direction
         sql: "{CUBE}.opening_direction"
         type: string

@@ -1,0 +1,26 @@
+views:
+  - name: sensitive_scan_log_view
+    description: >
+      敏感词扫描记录视图。包含公司编码、年度、扫描字段、扫描/命中条数、
+      命中词、状态及错误信息等维度，以及扫描总条数、命中总条数、
+      成功/失败次数等指标，支持凭证文本风险扫描的审计追溯。
+
+    cubes:
+      - join_path: t_sensitive_scan_log
+        prefix: false
+        includes:
+          - id
+          - company_code
+          - fiscal_year
+          - scan_field
+          - total_scanned
+          - total_hits
+          - hit_words
+          - status
+          - error_msg
+          - created_at
+          - count
+          - total_scanned_sum
+          - total_hits_sum
+          - success_count
+          - failed_count

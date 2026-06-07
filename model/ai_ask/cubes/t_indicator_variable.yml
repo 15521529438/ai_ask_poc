@@ -1,0 +1,83 @@
+cubes:
+  - name: t_indicator_variable
+    sql_table: ai_ask_poc.t_indicator_variable
+    public: false
+    title: 变量字典
+
+    dimensions:
+      - name: id
+        sql: "{CUBE}.id"
+        type: number
+        primary_key: true
+        title: 主键ID
+
+      - name: variable_code
+        sql: "{CUBE}.variable_code"
+        type: string
+        title: 变量编码
+
+      - name: variable_name
+        sql: "{CUBE}.variable_name"
+        type: string
+        title: 变量名称
+
+      - name: source_table
+        sql: "{CUBE}.source_table"
+        type: string
+        title: 源表名
+
+      - name: source_field
+        sql: "{CUBE}.source_field"
+        type: string
+        title: 源字段
+
+      - name: source_filter
+        sql: "{CUBE}.source_filter"
+        type: string
+        title: 过滤条件
+
+      - name: aggregation
+        sql: "{CUBE}.aggregation"
+        type: string
+        title: 聚合方式
+
+      - name: calc_formula
+        sql: "{CUBE}.calc_formula"
+        type: string
+        title: 计算公式
+
+      - name: description
+        sql: "{CUBE}.description"
+        type: string
+        title: 变量说明
+
+      - name: sort_order
+        sql: "{CUBE}.sort_order"
+        type: number
+        title: 排序
+
+      - name: is_active
+        sql: "{CUBE}.is_active"
+        type: string
+        title: 是否启用
+
+      - name: created_at
+        sql: "{CUBE}.created_at"
+        type: time
+        title: 创建时间
+
+      - name: updated_at
+        sql: "{CUBE}.updated_at"
+        type: time
+        title: 更新时间
+
+    measures:
+      - name: count
+        type: count
+        title: 变量数量
+
+      - name: active_count
+        type: count
+        filters:
+          - sql: "{CUBE}.is_active = '1'"
+        title: 启用变量数量
