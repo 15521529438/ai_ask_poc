@@ -1,9 +1,13 @@
 views:
   - name: auxiliary_detail_view
     description: >
-      SAP辅助核算凭证明细视图。包含过账日期、公司、科目、利润中心、
-      成本中心、客户、供应商等维度，以及借方/贷方/净额/累计余额等财务指标，
-      支持多维度的费用穿透分析与风险识别（含敏感词、风险类型字段）。
+      SAP辅助核算凭证【明细流水】视图，最细粒度为单张凭证的行项目（逐笔）。
+      仅用于：按凭证逐笔穿透、查询某一笔具体费用的来龙去脉、凭证级钻取、
+      风险巡检（敏感词命中、招待费拆单、大额咨询费、频次过高、单车费等）
+      等【明细级】场景；报销人、车牌等需从 text_summary(摘要) 正则提取。
+      【排他约束】不要用于"费用合计、费用项汇总、费用总额、本期发生额合计、
+      期末余额、预算对比"等汇总口径问题——这类汇总一律使用 balance_summary_view（余额表视图）。
+      也不用于竞企/集团内子公司之间的费用横向对比（走利润报表视图）。
 
     cubes:
       - join_path: t_auxiliary_detail
@@ -21,6 +25,7 @@ views:
           - line_item
           - account_code
           - account_name
+          - expense_type
           - opposite_account
           - opposite_account_desc
           - text_summary

@@ -66,6 +66,11 @@ cubes:
         type: string
         title: 总账科目长文本
 
+      - name: expense_type
+        sql: "{CUBE}.expense_type"
+        type: string
+        title: 费用大类
+        
       - name: opposite_account
         sql: "{CUBE}.opposite_account"
         type: string
