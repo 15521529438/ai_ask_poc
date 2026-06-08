@@ -70,7 +70,7 @@ cubes:
         sql: "{CUBE}.expense_type"
         type: string
         title: 费用大类
-        
+
       - name: opposite_account
         sql: "{CUBE}.opposite_account"
         type: string
